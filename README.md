@@ -11,7 +11,7 @@ instructions:
 
 #### Data Cleaning, Preprocessing (Safia) 
 - Y: Electricity Net Generation (MWh)
-- X: from page 1 (will need to get pivoted): [Month, Quantity Consumed in Physical Units for Electric Generation, Physical Unit Label, Reported Prime Mover, Reported Fuel Type Code, Operator Name (or ID), Plant State, Census]
+- X: from page 1 (will need to get pivoted), Generation and Fuel Data: [Month, Quantity Consumed in Physical Units for Electric Generation, Physical Unit Label, Reported Prime Mover, Reported Fuel Type Code, Operator Name (or ID), Plant State, Census]
 - X: from Page 5: [ENERGY_SOURCE, FUEL_GROUP, QUANTITY, Average Heat Content, Average Sulfuer Content, Average Ash Content, FUEL_COST, Moisture Content, Primary Transportation Mode, ]
 
 #### EDA (Sharon, Linda)
@@ -26,13 +26,6 @@ instructions:
 - May need to log transform or a box cox
 
 
-
-
-- Nash: 
-- Sharon:
-- Linda:
-  - 
-- Safia: R
-  - Data cleaning
-- Alex:
-  - 
+#### Report
+- All participants to organize their process and findings in a [google doc](https://docs.google.com/document/d/1JRd5DeINReVoYmRqIuzUhQpY58EsFdD6B-P_0IySAcQ/edit?usp=sharing)
+- 
