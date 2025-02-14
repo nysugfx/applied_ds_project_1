@@ -1,0 +1,134 @@
+---
+title: "STAT 5243 Project 1"
+output: html_notebook
+---
+
+```{r}
+# Libraries
+library(dplyr)
+library(tidyr)
+library(tidyverse)
+
+# Loading dataset into R
+setwd("~/Downloads")
+library(readxl)
+Page1 <- read_excel("Page 1.xlsx", skip = 5) #skipping header rows
+Page5 <- read_excel("Page 5.xlsx", skip = 3) #skipping header rows
+```
+
+```{r}
+#Running initial analyses to determine changes that need to be made to data
+
+# Summary statistics
+str(Page1)
+summary(Page1)
+
+str(Page5)
+summary(Page5)
+
+# Checking column names and determining how data is being organized
+colnames(Page1)
+colnames(Page5)
+
+# Checking for NAs
+table(is.na(Page1))
+table(is.na(Page5))
+```
+
+```{r}
+# In page 1, we want to consider the following variables for Generation and Fuel Data: [Month, Quantity Consumed in Physical Units for Electric Generation, Physical Unit Label, Reported Prime Mover, Reported Fuel Type Code, Operator Name (or ID), Plant State]
+# In page 5, we want to consider the following variables: [ENERGY_SOURCE, FUEL_GROUP, QUANTITY, Average Heat Content, Average Sulfur Content, Average Ash Content, FUEL_COST, Moisture Content, Primary Transportation Mode]
+```
+
+```{r}
+# Renaming columns for consistency and pivoting 
+Page1 <- Page1 %>%
+  rename(
+    `Operator ID` = `Operator Id`,
+    `Plant ID` = `Plant Id`,
+    `Nuclear Unit ID` = `Nuclear Unit Id`,
+    `Year` = `YEAR`,
+    `Reported Prime Mover` = `Reported\nPrime Mover`,
+    `Reported Fuel Type Code` = `Reported\nFuel Type Code`,
+    `Physical Unit Label` = `Physical\nUnit Label`
+  ) %>%
+  pivot_longer(
+    cols = starts_with("Quantity\n"),
+    names_to = "Month",
+    values_to = "Quantity Consumed in Physical Units for Electric Generation"
+  ) %>%
+  mutate(
+    Month = gsub("Quantity\n", "", Month) # Renaming month names
+  )
+
+# Modified dataframe:
+head(Page1)
+```
+
+```{r}
+# Renaming columns for consistency and selecting variables of interest
+Page5 <- Page5 %>%
+  rename(
+    `Average Heat Content` = `Average Heat\nContent`,
+    `Average Sulfur Content` = `Average Sulfur\nContent`,
+    `Average Ash Content` = `Average Ash\nContent`,
+    `Contract Expiration Date` = `Contract\nExpiration Date`,
+    `Coalmine Type` = `Coalmine\nType`,
+    `Coalmine State` = `Coalmine\nState`,
+    `Coalmine County` = `Coalmine\nCounty`,
+    `Coalmine Name` = `Coalmine\nName`,
+    `Coalmine Msha ID` = `Coalmine\nMsha Id`,
+    `Average Mercury Content` = `Average Mercury\nContent`,
+    `Moisture Content` = `Moisture\nContent`,
+    `Chlorine Content` = `Chlorine\nContent`,
+    `Energy Source` = `ENERGY_SOURCE`,
+    `Fuel Group` = `FUEL_GROUP`,
+    `Quantity` = `QUANTITY`,
+    `Year` = `YEAR`,
+    `Month` = `MONTH`,
+    `Plant ID` = `Plant Id`,
+    `Supplier` = `SUPPLIER`,
+    `Operator ID` = `Operator Id`,
+    `Fuel Cost` = `FUEL_COST`
+  ) %>%
+  select(
+    `Energy Source`,
+    `Fuel Group`,
+    `Quantity`,
+    `Average Heat Content`,
+    `Average Sulfur Content`,
+    `Average Ash Content`,
+    `Fuel Cost`,
+    `Moisture Content`,
+    `Primary Transportation Mode`,
+    `Year`,
+    `Month`,
+    `Plant ID`,
+    `Operator ID`,
+    `Fuel Cost`
+  )
+
+# Displaying modified dataframe
+head(Page5)
+```
+
+```{r}
+# Selecting relevant columns
+Page1_New <- Page1 %>%
+  select(`Month`, `Year`, `Plant ID`, `Operator ID`, 
+         `Quantity Consumed in Physical Units for Electric Generation`, 
+         `Physical Unit Label`, `Reported Prime Mover`, `Reported Fuel Type Code`)
+
+Page5_New <- Page5 %>%
+  select(`Month`, `Year`, `Plant ID`, `Operator ID`, `Energy Source`, `Fuel Group`, 
+         Quantity, `Average Heat Content`, `Average Sulfur Content`, 
+         `Average Ash Content`, `Fuel Cost`, `Moisture Content`, 
+         `Primary Transportation Mode`)
+
+# Merging datasets (Page 1 and 5)
+Merged_Data <- left_join(Page1_New, Page5_New, 
+                         by = c("Plant ID", "Operator ID"))
+
+# New merged data
+head(Merged_Data)
+```
