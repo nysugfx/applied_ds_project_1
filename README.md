@@ -1,6 +1,6 @@
+## README
 
-
-## Project plan:
+#### Project objective:
 - Determining which factors influence student dropout and academic success rates
 
 #### Files:
