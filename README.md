@@ -28,7 +28,6 @@
 - Create interactive features
 - Normalization of numerical data
 
-#### Report
-- All participants to organize their process and findings in a [google doc](https://docs.google.com/document/d/1JRd5DeINReVoYmRqIuzUhQpY58EsFdD6B-P_0IySAcQ/edit?usp=sharing)
+#### Report (Alex)
 
 
