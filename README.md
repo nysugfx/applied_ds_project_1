@@ -4,30 +4,11 @@
 - Determining which factors influence student dropout and academic success rates
 
 #### Files:
-- student_acadamic_analysis.ipynb -- Main code file
+- student_acadamic_analysis.ipynb -- main code file with annotations/notes describing the process and immediate outputs
 - final_dropandsuccess_merge.csv -- raw dataset
-- pre_processed.csv and pre_processed2.csv -- two datasets that after some preprocessing
-- final_clean.csv -- final dataset after all processing
+- pre_processed.csv and pre_processed2.csv -- two datasets that reflect preprocessing steps
+- final_clean.csv -- final dataset (after all processing has been completed)
 
-#### Data Cleaning and Preprocessing(Linda(Yuhan Lin), Safia)
-- encoding for categorical variables
-- Check duplicates and Delete Unnamed columns
-- Test Outliers —— boxplots
-
-
-#### EDA (Sharon(Ruijia GE))
-- correlation matrix
-- Comparising performance for Target variable
-- Temporal Analysis
-- Clustering using K-Means
-
-#### Feature Engineering (Nash(Qiaoyang Lin))
-- find and download Students dataset
-- Box-Cox
-- Create meaningful new features
-- Create interactive features
-- Normalization of numerical data
-
-#### Report (Alex)
-
+#### Running and reading the files:
+- In order to run the code, load the .csv files into a Python reader. Alternatively, open student_acadamic_analysis.ipynb in GitHub where you can see the code and outputs. 
 
