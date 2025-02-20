@@ -1,7 +1,7 @@
 
 
 ## Project plan:
-- To figure out what factors make student Dropout and Academic Success
+- Determining which factors influence student dropout and academic success rates
 
 #### Files:
 - student_acadamic_analysis.ipynb -- Main code file
